@@ -14,7 +14,6 @@ if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
 
 $id = (int) $_GET['id'];
 
-// Get existing user
 $stmt = mysqli_prepare($connection, "SELECT * FROM users WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
@@ -27,7 +26,6 @@ if (!$user) {
     exit();
 }
 
-// Update user
 if (isset($_POST['update_user'])) {
 
     $StudentId = trim($_POST['StudentId']);
@@ -43,7 +41,6 @@ if (isset($_POST['update_user'])) {
         $error = "Invalid account role!";
     } else {
 
-        // Check duplicate Student ID or email
         $check = "SELECT id FROM users
                   WHERE (StudentId = ? OR email = ?)
                   AND id != ?";
