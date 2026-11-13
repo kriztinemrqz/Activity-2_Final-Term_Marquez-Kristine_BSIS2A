@@ -17,7 +17,6 @@ if (!isset($_POST['id']) || !ctype_digit($_POST['id'])) {
 
 $id = (int) $_POST['id'];
 
-// Prevent admin from deleting their own account
 if ($id === (int) $_SESSION['user_id']) {
     header("Location: users.php?error=self");
     exit();
